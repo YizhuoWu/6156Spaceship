@@ -1,11 +1,26 @@
 # demo-flask
 
+### architecture
+https://lucid.app/lucidchart/851b555d-060d-4b80-a17a-c498403d5a3d/edit?beaconFlowId=D158BA96BCCC408B&invitationId=inv_3d733721-3ba3-4205-99fe-c1da5663e045&page=0_0#
+
 ### deployed link
 http://6156-final-proj-front-end.s3-website-us-east-1.amazonaws.com/
 
-### install back-end (first time)
+### file-structure
 ```
-cd back-end
+/user-service
+    /app.py
+/news-service
+    /app.py
+/comment-service
+    /app.py
+/front-end
+    /App.js
+```
+
+### install back-end 
+```
+cd user-service
 python3 -m venv venv (only first time)
 source venv/bin/activate
 python3 -m pip install Flask==1.1.2
@@ -14,7 +29,7 @@ python3 -m pip freeze > requirements.txt
 
 ### run back-end (locally)
 ```
-cd back-end
+cd user-service
 python3 app.py
 ```
 
