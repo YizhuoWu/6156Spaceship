@@ -59,6 +59,7 @@ POST /discover/post
 body: {
     "news_id": 123,
     "username": "test_username"
+    "comment_info": "test comment3"
 }
 return data type: 
 {
