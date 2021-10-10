@@ -20,6 +20,7 @@ body: { "query": "" }
 return data format
     {
         "username": "",
+        "num_news": 2,
         "news": [
             {
                 "news_id": 123,
