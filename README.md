@@ -6,6 +6,55 @@ https://lucid.app/lucidchart/851b555d-060d-4b80-a17a-c498403d5a3d/edit?beaconFlo
 ### deployed link
 http://6156-final-proj-front-end.s3-website-us-east-1.amazonaws.com/
 
+### Endpoints
+```
+GET /profile/:username/
+return data format
+    {
+        "username": "",
+        "address": ""
+    }
+
+POST /discover/:username/
+body: { "query": "" }
+return data format
+    {
+        "username": "",
+        "news": [
+            {
+                "news_id": 123,
+                "content_summary": "",
+
+            },
+            {
+                "news_id": 321,
+                "content_summary": "",
+            },
+            ...
+        ]
+    }
+
+POST /discover/:username/:newsid
+    {
+        "username": "",
+        "news": {
+            "news_id": 123,
+            "content_full": "",
+            "comments": [
+                {
+                    "username": "username2",
+                    "comment_info": "test comment2"
+                },
+                {
+                    "username": "username1",
+                    "comment_info": "test comment3"
+                },
+                ...
+            ]
+        }
+    }
+```
+
 ### file-structure
 ```
 /user-service
