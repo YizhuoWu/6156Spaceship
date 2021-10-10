@@ -35,7 +35,7 @@ return data format
         ]
     }
 
-POST /discover/:username/:newsid
+GET /discover/:username/:newsid
     {
         "username": "",
         "news": {
@@ -54,6 +54,32 @@ POST /discover/:username/:newsid
             ]
         }
     }
+
+POST /discover/post
+body: {
+    "news_id": 123,
+    "username": "test_username"
+}
+return data type: 
+{
+    "username": "",
+    "news": {
+        "news_id": 123,
+        "content_full": "",
+        "comments": [
+            {
+                "username": "username2",
+                "comment_info": "test comment2"
+            },
+            {
+                "username": "username1",
+                "comment_info": "test comment3"
+            },
+            ...
+        ]
+    }
+}
+
 ```
 
 ### file-structure
