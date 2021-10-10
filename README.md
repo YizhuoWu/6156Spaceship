@@ -1,6 +1,9 @@
 # demo-flask
 
-### run front-end
+### deployed link
+http://6156-final-proj-front-end.s3-website-us-east-1.amazonaws.com/
+
+### run front-end (locally)
 ```
 cd front-end
 npm start  
