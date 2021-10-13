@@ -15,8 +15,8 @@ return data format
         "address": ""
     }
 
-POST /discover/:username/
-body: { "query": "" }
+POST /discover/:username?query="sports"
+
 return data format
     {
         "username": "",
