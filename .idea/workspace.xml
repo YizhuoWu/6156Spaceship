@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/comment-service/Framework/RDBService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comment-service/middleware/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comment-service/requirements.txt" afterDir="false" />
+    <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="Add comments microservice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment-service/Comment_Application/RDBService.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment-service/Comment_Application/RDBService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/comment-service/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment-service/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment-service/middleware/context.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment-service/middleware/context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/comment-service/Framework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo-flask" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -130,8 +130,19 @@
       <option name="presentableId" value="Default" />
       <updated>1633888812964</updated>
       <workItem from="1633888818450" duration="600000" />
-      <workItem from="1634087077771" duration="11412000" />
+      <workItem from="1634087077771" duration="12229000" />
+      <workItem from="1634182773042" duration="491000" />
+      <workItem from="1634185833033" duration="2000" />
+      <workItem from="1634233327150" duration="1049000" />
     </task>
+    <task id="LOCAL-00001" summary="Add comments microservice">
+      <created>1634101843864</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1634101843864</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,9 +158,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add comments microservice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add comments microservice" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/6156Spaceship$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1634096983767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/6156Spaceship$app.coverage" NAME="app Coverage Results" MODIFIED="1634101668488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/comment-service" />
+    <SUITE FILE_PATH="coverage/6156Spaceship$app.coverage" NAME="app Coverage Results" MODIFIED="1634234368128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/comment-service" />
   </component>
 </project>
