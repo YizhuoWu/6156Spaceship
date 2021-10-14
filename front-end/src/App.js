@@ -13,9 +13,9 @@ function App() {
 
         <Switch>
             <Route exact path='/' component={LoginSignup}/>
-            <Route path='/:username/news' component={(props) => <NewsList {...props} />} />
-            <Route path='/:username/discover' component={(props) => <Discover {...props} />} />
-            <Route path='/:username/profile' component={(props) => <UserProfile {...props} />} /> 
+            {/* <Route path='/:username/news' component={(props) => <NewsList {...props} />} /> */}
+            <Route path='/discover/:username/' component={(props) => <Discover {...props} />} />
+            <Route path='/profile/:username/' component={(props) => <UserProfile {...props} />} /> 
             {/* <Route path='/schedule' component={Schedule}/> */}
         </Switch>
 

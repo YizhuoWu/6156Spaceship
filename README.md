@@ -6,6 +6,83 @@ https://lucid.app/lucidchart/851b555d-060d-4b80-a17a-c498403d5a3d/edit?beaconFlo
 ### deployed link
 http://6156-final-proj-front-end.s3-website-us-east-1.amazonaws.com/
 
+### Endpoints
+```
+GET /profile/:username/
+return data format
+    {
+        "username": "",
+        "address": ""
+    }
+
+POST /discover/:username?query="sports"
+
+return data format
+    {
+        "username": "",
+        "num_news": 2,
+        "news": [
+            {
+                "news_id": 123,
+                "content_summary": "",
+
+            },
+            {
+                "news_id": 321,
+                "content_summary": "",
+            },
+            ...
+        ]
+    }
+
+GET /discover/:username/:newsid
+    {
+        "username": "",
+        "news": {
+            "news_id": 123,
+            "content_full": "",
+            "comments": [
+                {
+                    "username": "username2",
+                    "comment_info": "test comment2"
+                },
+                {
+                    "username": "username1",
+                    "comment_info": "test comment3"
+                },
+                ...
+            ]
+        }
+    }
+
+POST /discover/post
+body: {
+    "news_id": 123,
+    "username": "test_username"
+    "comment_info": "test comment3"
+}
+return data type: 
+{
+    "username": "",
+    "news": {
+        "news_id": 123,
+        "content_full": "",
+        "comments": [
+            {
+                "username": "username2",
+                "comment_info": "test comment2"
+            },
+            {
+                "username": "username1",
+                "comment_info": "test comment3"
+            },
+            ...
+        ]
+    }
+}
+
+```
+
 ### file-structure
 ```
 /user-service
