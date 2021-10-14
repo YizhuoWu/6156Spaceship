@@ -5,7 +5,8 @@ import logging
 
 # from application_services.imdb_artists_resource import IMDBArtistResource
 # from application_services.UsersResource.user_service import UserResource
-from Comment_Application.RDBService import RDBService as RDBService
+from Comment_Application.CommentService import CommentService as CommentService
+from RDB_Application.RDBService import RDBService as RDBService
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
@@ -22,11 +23,11 @@ def hello_world():
 
 @app.route('/discover/<username>/<news_id>',methods = ['GET'])
 def get_comment(username, news_id):
-    res = RDBService.get_by_name_id(username, news_id)
-    print(res)
-    return_res = {'username': username, 'news': { 'news_id': news_id, 'content_full': res[len(res) - 1]['full_content'], 'comments':[] } }
-    for i in range(len(res)-1):
-        dict = {'username': res[i]['username'], 'comment_info': res[i]['comment_info']}
+    comment_res = CommentService.get_comment_by_id(news_id)
+    news_res = CommentService.get_news_by_id(news_id)
+    return_res = {'username': username, 'news': { 'news_id': news_id, 'content_full': news_res[0]['full_content'], 'comments':[] } }
+    for i in range(len(comment_res)):
+        dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info']}
         return_res['news']['comments'].append(dict)
     print(return_res)
     rsp = Response(json.dumps(return_res), status=200, content_type="application/json")
@@ -37,7 +38,16 @@ def create_comment():
     comment_data = request.get_json()
     print(comment_data)
     res = RDBService.create("Comments", "comment", comment_data)
-    rsp = Response(json.dumps(res), status=200, content_type="application/json")
+    comment_res = CommentService.get_comment_by_id(str(comment_data['news_id']))
+    news_res = CommentService.get_news_by_id(str(comment_data['news_id']))
+
+    return_res = {'username': comment_data['username'],
+                  'news': {'news_id': comment_data['news_id'], 'content_full': news_res[0]['full_content'], 'comments': []}}
+    for i in range(len(comment_res)):
+        dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info']}
+        return_res['news']['comments'].append(dict)
+    print(return_res)
+    rsp = Response(json.dumps(return_res), status=200, content_type="application/json")
     return rsp
 
 if __name__ == '__main__':
