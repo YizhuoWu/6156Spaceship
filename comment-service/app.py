@@ -23,11 +23,11 @@ def hello_world():
 @app.route('/discover/<username>/<news_id>',methods = ['GET'])
 def get_comment(username, news_id):
     res = RDBService.get_by_name_id(username, news_id)
-    print(type(res[0]))
-    return_res = {'username': username, 'news_id':news_id, 'comments':[]}
-    for i in range(len(res)):
+    print(res)
+    return_res = {'username': username, 'news': { 'news_id': news_id, 'content_full': res[len(res) - 1]['full_content'], 'comments':[] } }
+    for i in range(len(res)-1):
         dict = {'username': res[i]['username'], 'comment_info': res[i]['comment_info']}
-        return_res['comments'].append(dict)
+        return_res['news']['comments'].append(dict)
     print(return_res)
     rsp = Response(json.dumps(return_res), status=200, content_type="application/json")
     return rsp

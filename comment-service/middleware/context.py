@@ -16,9 +16,9 @@ def get_db_info(dbname):
 
     if dbname == "news":
         db_info = {
-            "host": "dbs-6156-demoflask.cqpd5huf91dk.us-east-1.rds.amazonaws.com",
+            "host": "news-db.czclpd5rbl1a.us-east-1.rds.amazonaws.com",
             "user": "admin",
-            "password": "19981013Anna",
+            "password": "Fall6156!",
             "cursorclass": pymysql.cursors.DictCursor
         }
     else:

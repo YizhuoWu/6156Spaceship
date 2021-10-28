@@ -52,18 +52,21 @@ class RDBService:
 
         conn_comment.close()
 
-        # conn_news = RDBService.get_db_connection("Comments")
-        # cur_news = conn_news.cursor()
-        #
-        # news_sql = "select full_content from db-news-schema.news" + " where news_id = " + news_id
-        # print("SQL Statement = " + cur_news.mogrify(news_sql, None))
-        #
-        # res_news = cur_news.execute(news_sql)
-        # res_news = cur_news.fetchall()
-        #
-        # conn_news.close()
+        conn_news = RDBService.get_db_connection("news")
+        cur_news = conn_news.cursor()
 
-        return res_comment
+        news_db_name = "'db-news-schema'"
+        news_table_name = "'news-fake'"
+
+        news_sql = "select full_content from `db-news-schema`.`news-fake` where news_id = " + news_id
+        print("SQL Statement = " + cur_news.mogrify(news_sql, None))
+
+        res_news = cur_news.execute(news_sql)
+        res_news = cur_news.fetchall()
+
+        conn_news.close()
+
+        return res_comment + res_news
 
     @classmethod
     def create(cls, db_schema, table_name, create_data):
