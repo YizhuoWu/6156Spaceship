@@ -58,7 +58,7 @@ class RDBService:
         news_db_name = "'db-news-schema'"
         news_table_name = "'news-fake'"
 
-        news_sql = "select full_content from `db-news-schema`.`news-fake` where news_id = " + news_id
+        news_sql = "select full_content from `db-news-schema`.`news_table` where news_id = " + news_id
         print("SQL Statement = " + cur_news.mogrify(news_sql, None))
 
         res_news = cur_news.execute(news_sql)
