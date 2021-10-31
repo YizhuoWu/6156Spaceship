@@ -44,11 +44,13 @@ GET /discover/:username/:newsid
             "comments": [
                 {
                     "username": "username2",
-                    "comment_info": "test comment2"
+                    "comment_info": "test comment2",
+                    "timestamp": "2021-10-31 14:12:11"
                 },
                 {
                     "username": "username1",
-                    "comment_info": "test comment3"
+                    "comment_info": "test comment3",
+                    "timestamp": "2021-10-31 14:02:11"
                 },
                 ...
             ]
@@ -70,11 +72,13 @@ return data type:
         "comments": [
             {
                 "username": "username2",
-                "comment_info": "test comment2"
+                "comment_info": "test comment2",
+                "timestamp": "2021-10-31 14:12:11"
             },
             {
                 "username": "username1",
-                "comment_info": "test comment3"
+                "comment_info": "test comment3",
+                "timestamp": "2021-10-31 14:02:11"
             },
             ...
         ]
