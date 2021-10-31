@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 .DS_Store
 .idea
 
+=======
+
+.DS_Store
+.idea/workspace.xml
+.DS_Store
+address-validation/Archive.zip
+>>>>>>> 7026ff0a92ef39ab27a5c8357b0a7a628850e4b8
