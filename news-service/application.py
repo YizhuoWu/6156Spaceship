@@ -1,4 +1,4 @@
-from flask import Flask, Response,request, jsonify
+from flask import Flask, Response, request, jsonify
 from flask_cors import CORS
 from Comment_Application.RDBService import RDBService as RDBService
 import json
@@ -12,8 +12,17 @@ CORS(app)
 def index():
     return "The Flask App Works!"
 
-@app.route('/discover/<username>/<news_id>',methods = ['GET'])
-def get_news(username, query):
+
+
+@app.route('/discover/<username>',methods = ['POST'])
+
+
+
+
+@app.route('/discover/<username>/<query>',methods = ['GET'])
+def get_news(username):
+    #query = request.args.get('query', default = "", type = str)
+    query = "Columbia"
     res = RDBService.get_by_name_id(username, news_id)
     print(res)
     return_res = {'username': username, 'news': { 'news_id': news_id, 'content_full': res[len(res) - 1]['full_content'], 'comments':[] } }
