@@ -18,14 +18,19 @@ class RDBService:
     def get_db_connection(cls, dbname):
 
         db_info = context.get_db_info(dbname)
-
-        db_connection = pymysql.connect(**db_info, autocommit=True)
+        try:
+            db_connection = pymysql.connect(**db_info, autocommit=True)
+        except pymysql.Error as error:
+            db_connection = False
         return db_connection
 
     @classmethod
     def run_sql(cls, dbname, sql_statement, args, fetch=False):
 
         conn = RDBService.get_db_connection(dbname)
+
+        if not conn:
+            return "connection failed"
 
         try:
             cur = conn.cursor()
@@ -58,4 +63,30 @@ class RDBService:
 
         print(sql_stmt)
         res = RDBService.run_sql("comments",sql_stmt, args)
+        return res
+
+    @classmethod
+    def delete(cls, db_schema, table_name, delete_data):
+        # cols = []
+        # vals = []
+        # args = []
+        conditions = ""
+        for k,v in delete_data.items():
+            # cols.append(k)
+            # vals.append('%s')
+            # args.append(v)
+            if type(v) == str:
+                add_v = "'" + v + "'"
+            else:
+                add_v = v
+            conditions = conditions + k + " = " + str(add_v) + ' and '
+
+        # cols_clause = "(" + ",".join(cols) + ")"
+        # vals_clause = "values (" + ",".join(vals) + ")"
+        conditions = conditions[:len(conditions)-5]
+
+        sql_stmt = "delete from " + db_schema + "." + table_name + " where " + conditions
+
+        print(sql_stmt)
+        res = RDBService.run_sql("comments",sql_stmt, None)
         return res
