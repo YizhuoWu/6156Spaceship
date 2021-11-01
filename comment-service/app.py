@@ -23,6 +23,7 @@ def before_request_func():
 @app.after_request
 def after_request_func(response):
     notify(request)
+    return response
 
 @app.route('/')
 def hello_world():
