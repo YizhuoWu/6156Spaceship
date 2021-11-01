@@ -21,7 +21,7 @@ def before_request_func():
     print("here is the before request!")
 
 @app.after_request
-def after_request_func():
+def after_request_func(response):
     notify(request)
 
 @app.route('/')
