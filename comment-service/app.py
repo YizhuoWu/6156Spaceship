@@ -55,7 +55,7 @@ def get_comment(username, news_id):
         return Response(json.dumps("Database connection failed"), status=500, content_type="application/json")
         
     return_res = {'username': username, 'news': { 'news_id': news_id, 'content_full': news_res[0]['full_content'], 'comments':[] }, 
-                'links':[ {'rel': 'self', 'href': '/discover/' + username + news_id }, {'rel': 'user', 'href': '/api/v1/users/' + username} ] }
+                'links':[ {'rel': 'self', 'href': '/discover/' + username + "/" + news_id }, {'rel': 'user', 'href': '/api/v1/users/' + username} ] }
     for i in range(len(comment_res)):
         dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info'], 'timestamp': str(comment_res[i]['timestamp'])}
         return_res['news']['comments'].append(dict)
