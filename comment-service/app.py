@@ -84,7 +84,7 @@ def create_comment():
     args = request.args
     if args:
         for k in args:
-            if k != "offset" and k != "limit" and k !="user_comment":
+            if k != "offset" and k != "limit" and k !="username":
                 return Response(json.dumps("The request fields are not available"), status=404, content_type="application/json")
     
     comment_res = CommentService.get_comment_by_id(str(comment_data['news_id']), offset, limit, user_comment)
