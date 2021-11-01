@@ -81,8 +81,6 @@ class RDBService:
                 add_v = v
             conditions = conditions + k + " = " + str(add_v) + ' and '
 
-        # cols_clause = "(" + ",".join(cols) + ")"
-        # vals_clause = "values (" + ",".join(vals) + ")"
         conditions = conditions[:len(conditions)-5]
 
         sql_stmt = "delete from " + db_schema + "." + table_name + " where " + conditions

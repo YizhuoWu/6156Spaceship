@@ -7,6 +7,7 @@ from datetime import datetime
 
 from Comment_Application.CommentService import CommentService as CommentService
 from RDB_Application.RDBService import RDBService as RDBService
+from middleware.notification import notify
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
@@ -15,6 +16,13 @@ logger.setLevel(logging.INFO)
 app = Flask(__name__)
 CORS(app)
 
+@app.before_request
+def before_request_func():
+    print("here is the before request!")
+
+@app.after_request
+def after_request_func():
+    notify(request)
 
 @app.route('/')
 def hello_world():
