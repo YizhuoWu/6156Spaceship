@@ -4,6 +4,8 @@ import Discover from './discover';
 import UserProfile from './userProfile';
 import NewsList from './newsList';
 import LoginSignup from './loginSignup';
+// comment for testing
+import Home from './home';
 import './App.css';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
             {/* <Route path='/:username/news' component={(props) => <NewsList {...props} />} /> */}
             <Route path='/discover/:username/' component={(props) => <Discover {...props} />} />
             <Route path='/profile/:username/' component={(props) => <UserProfile {...props} />} /> 
+            
+            <Route path='/home' component={(props) => <Home {...props} />} />
             {/* <Route path='/schedule' component={Schedule}/> */}
         </Switch>
 
