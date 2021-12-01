@@ -6,6 +6,48 @@ https://lucid.app/lucidchart/851b555d-060d-4b80-a17a-c498403d5a3d/edit?beaconFlo
 ### deployed link
 http://6156-final-proj-front-end.s3-website-us-east-1.amazonaws.com/
 
+### file-structure
+```
+/user-service
+    /app.py
+/news-service
+    /app.py
+/comment-service
+    /app.py
+/front-end
+    /App.js
+```
+
+### install back-end 
+```
+cd user-service
+python3 -m venv venv (only first time)
+source venv/bin/activate
+python3 -m pip install Flask==1.1.2
+python3 -m pip freeze > requirements.txt
+```
+
+### run back-end (locally)
+```
+cd user-service
+python3 app.py
+```
+
+### first time run front-end (locally)
+```
+cd front-end
+touch .env  (add REACT_APP_API_KEY=XXXXXXXXXX in .env)
+npm install
+npm start
+(localhost:3000)
+```
+
+### run front-end (locally)
+```
+cd front-end
+npm start
+```
+
 ### Endpoints
 ```
 GET /profile/:username/
@@ -44,11 +86,13 @@ GET /discover/:username/:newsid
             "comments": [
                 {
                     "username": "username2",
-                    "comment_info": "test comment2"
+                    "comment_info": "test comment2",
+                    "timestamp": "2021-10-31 14:12:11"
                 },
                 {
                     "username": "username1",
-                    "comment_info": "test comment3"
+                    "comment_info": "test comment3",
+                    "timestamp": "2021-10-31 14:02:11"
                 },
                 ...
             ]
@@ -70,54 +114,17 @@ return data type:
         "comments": [
             {
                 "username": "username2",
-                "comment_info": "test comment2"
+                "comment_info": "test comment2",
+                "timestamp": "2021-10-31 14:12:11"
             },
             {
                 "username": "username1",
-                "comment_info": "test comment3"
+                "comment_info": "test comment3",
+                "timestamp": "2021-10-31 14:02:11"
             },
             ...
         ]
     }
 }
 
-```
-
-### file-structure
-```
-/user-service
-    /app.py
-/news-service
-    /app.py
-/comment-service
-    /app.py
-/front-end
-    /App.js
-```
-
-### install back-end 
-```
-cd user-service
-python3 -m venv venv (only first time)
-source venv/bin/activate
-python3 -m pip install Flask==1.1.2
-python3 -m pip freeze > requirements.txt
-```
-
-### run back-end (locally)
-```
-cd user-service
-python3 app.py
-```
-
-### run front-end (locally)
-```
-cd front-end
-npm start  
-
-(endpoints)
-"localhost:3000/", 
-"localhost:3000/username/news/"
-"localhost:3000/username/discover/"
-"localhost:3000/username/profile/"
 ```
