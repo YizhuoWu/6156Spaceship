@@ -1,0 +1,6 @@
+Validates the address. Return message is either "Address is valid." (if the address is correct or at least almost correct)
+or "No candidates. This means the address is not valid." (if the address is not even close to correct)
+
+Example:
+endpoint: http://addrvalidationservice-env.eba-jtfahpj7.us-east-1.elasticbeanstalk.com/validate GET
+body: {"street": "100 Amphitheatre Pkwy", "street2": "closet under the stairs", "city": "Mountain View", "state": "CA", "zipcode":"94040"}
