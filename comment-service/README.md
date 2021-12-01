@@ -1,7 +1,7 @@
 # comment-service readme
 
 ### deployed link
-http://ec2-18-206-107-25.compute-1.amazonaws.com/
+http://ec2-34-201-102-112.compute-1.amazonaws.com
 port: 5000
 
 ### endpoints
