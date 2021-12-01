@@ -45,6 +45,7 @@ npm start
 ### run front-end (locally)
 ```
 cd front-end
+npm install react-router-dom
 npm start
 ```
 
