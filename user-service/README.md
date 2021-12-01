@@ -40,7 +40,7 @@ Then it should return something like this:
 
 # set the profile of user with specified email
 # valid attributes: state, city, address, username, email
-/users/<string:email> PUT
+/users/<string:email> POST
 
 # delete the profile of user with specified email
 /users/<string:email> DELETE
