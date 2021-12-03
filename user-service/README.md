@@ -23,13 +23,13 @@ docker run -d -p 5000:5000 userservice
 If the docker container runs successfully, you can test the user-service's api from anywhere. For example:
 
 ```bash
-curl http://<user-service-ec2-ip>:5000/api/v1/users/js
+curl http://<user-service-ec2-ip>:5000/api/v1/users/wcunningham
 ```
 
 Then it should return something like this:
 
 ```bash
-{"address":"columbusave","links":[{"rel":"self","url":"/api/v1/users/js"}],"username":"js"}
+{"address":"7024 Holly Park Apt. 410\nWilliamsfort, RI 48411","city":"North Kyleview","email":"Timothy.Watkins@columbia.edu","links":[{"rel":"self","url":"/api/v1/users/wcunningham"}],"state":"New Mexico","username":"wcunningham"}
 ```
 
 ### End Points
@@ -40,7 +40,7 @@ Then it should return something like this:
 
 # set the profile of user with specified email
 # valid attributes: state, city, address, username, email
-/users/<string:email> PUT
+/users/<string:email> POST
 
 # delete the profile of user with specified email
 /users/<string:email> DELETE
