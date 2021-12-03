@@ -1,9 +1,9 @@
 
 import { GoogleLogout, GoogleLogin } from "react-google-login";
 import { useHistory } from "react-router-dom";
+import * as Constants from './constants';
 
-
-const clientId = "292318877165-fg1mtq4fvdp5mfjujnlikevd7o50p07g.apps.googleusercontent.com"
+const clientId = Constants.CLIENT_ID;
 
 
 export default function Logout() {
