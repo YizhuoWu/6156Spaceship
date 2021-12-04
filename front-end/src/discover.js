@@ -13,19 +13,12 @@ const urlPrefix = "https://newsapi.org/v2/everything"
 class NewsItem extends Component {
     state = {
         commentView: false,
-        userInput: ""
+        userInput: "",
+        comments: []
     }
 
     componentDidMount = () => {
-        const { username, newsId } = this.props;
-        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${username}/${newsId}`; // username/newsid
-        //console.log("newsCommentUrl: ", newsCommentUrl);
-
-        // fetch(newsCommentUrl)
-        //     .then(res => res.json())
-        //     .then((data) => {
-        //         console.log("newsCommentData: ", data);
-        //     })
+        const { newsId } = this.props;
     }
 
     userInputOnChange = (e) => {
@@ -34,11 +27,38 @@ class NewsItem extends Component {
         })
     }
 
-    commentHandler = () => {
+    // click (display)comment button
+    commentHandler = (newsId) => {
+        // display comment view
         this.setState((prevState) => ({
             commentView: !prevState.commentView
         }))
-    }
+        // clear comments
+        this.setState({
+            comments: []
+        }) 
+
+        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${newsId}`; // <newsid>
+        console.log("newsCommentUrl: ", newsCommentUrl);
+
+        fetch(newsCommentUrl)
+            .then(res => res.json())
+            .then((data) => {
+                // news_id, content_full, comments
+                if (typeof data === 'undefined' || typeof data.news === 'undefined' || typeof data.news.comments === 'undefined') {
+                    return;
+                }
+                data.news.comments.forEach((comment, index) => {
+                    this.setState((prevState) => ({
+                        comments: [...prevState.comments, {
+                            username: comment.username,
+                            timestamp: comment.timestamp,
+                            comment_info: comment.comment_info
+                        }]
+                    }));
+                });
+            })
+    }//commentHandler
 
     postComment = () => {
         const { newsId, username } = this.props;
@@ -47,6 +67,8 @@ class NewsItem extends Component {
         console.log("newsCommentUrl", newsCommentUrl);
         console.log("newsId: ", newsId, ", username: ", username);
         console.log("postComment, userInput: ", this.state.userInput);
+        const currentTime = new Date().toLocaleString();
+        const commentInfo = this.state.userInput;
 
         const requestOptions = {
             method: 'POST',
@@ -55,31 +77,45 @@ class NewsItem extends Component {
                 {
                     "news_id": newsId,
                     "username": username,
-                    "comment_info": "test comment again",
-                    "timestamp": "2021-10-10 10:10:11"
+                    "comment_info": commentInfo,
+                    "timestamp": currentTime
                 }
             )
         };
         fetch(newsCommentUrl, requestOptions)
             .then(response => response.json())
-            .then(data => console.log("postComment data: ", data));
+            .then((data) => {
+                console.log("post comment: ", data);
+                this.setState((prevState) => ({
+                    comments: [...prevState.comments, {
+                        username: username,
+                        timestamp: currentTime,
+                        comment_info: commentInfo
+                    }]
+                }));
+            });
     }
 
     render() {
         const { newsId, title, description } = this.props;
         const { commentView } = this.state;
         const placeHolderText = `comment for news ${newsId}`;
-        // const renderedComments = None;
+        const renderedComments = this.state.comments.map((comment, i) => 
+            <div key={i}>
+                <b>{comment.comment_info}</b>
+                <p>{comment.username} | {comment.timestamp}</p>
+            </div>
+        );
+
         return (
             <div class="news-item">
                 <h3>{title}</h3>
                 <p>{description}</p>
-                <button onClick={this.commentHandler}>Comment</button>
-                
-                {/* {renderedComments} */}
+                <button onClick={() => this.commentHandler(newsId)}>Comment</button>
                 
                 {commentView ?
                     <div>
+                        {renderedComments}
                         <input type="text" placeholder={placeHolderText} name="userInput" value={this.state.userInput} onChange={this.userInputOnChange}></input>  
                         <button onClick={this.postComment}>post</button>  
                     </div>
