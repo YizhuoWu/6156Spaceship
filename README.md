@@ -49,83 +49,171 @@ npm install react-router-dom@5.2.0
 npm start
 ```
 
-### Endpoints
+
+# user-service
+
+### deployed link
+http://ec2-107-23-18-108.compute-1.amazonaws.com:5000/
+
+
+### endpoints
 ```
-GET /profile/:username/
-return data format
-    {
-        "username": "",
-        "address": ""
-    }
-
-POST /discover/:username?query="sports"
-
-return data format
-    {
-        "username": "",
-        "num_news": 2,
-        "news": [
-            {
-                "news_id": 123,
-                "content_summary": "",
-
-            },
-            {
-                "news_id": 321,
-                "content_summary": "",
-            },
-            ...
-        ]
-    }
-
-GET /discover/:username/:newsid
-    {
-        "username": "",
-        "news": {
-            "news_id": 123,
-            "content_full": "",
-            "comments": [
-                {
-                    "username": "username2",
-                    "comment_info": "test comment2",
-                    "timestamp": "2021-10-31 14:12:11"
-                },
-                {
-                    "username": "username1",
-                    "comment_info": "test comment3",
-                    "timestamp": "2021-10-31 14:02:11"
-                },
-                ...
-            ]
+GET /api/v1/users/danielleboyd
+output data example:
+{
+    "address": "41506 Eric Port\nLoweland, DE 40062",
+    "city": "New Ryan",
+    "email": "Christina.Stokes@columbia.edu",
+    "links": [
+        {
+            "rel": "self",
+            "url": "/api/v1/users/danielleboyd"
         }
-    }
+    ],
+    "state": "New Mexico",
+    "username": "danielleboyd"
+}
+```
+
+# comment-service
+
+### deployed link
+http://ec2-34-201-102-112.compute-1.amazonaws.com
+port: 5000
+
+### endpoints
+```
+GET /discover/<newsid>
+output data example:
+{
+    "newsid": 1,
+    "comments": [
+        {
+            "username": "username1",
+            "comment_info": "test comment info",
+            "timestamp": "2021-10-10 10:10:11"
+        },
+        {
+            "username": "charles57",
+            "comment_info": "im charles57",
+            "timestamp": "2021-10-11 10:11:11"
+        }
+        ...
+    ]
+}
 
 POST /discover/post
-body: {
-    "news_id": 123,
-    "username": "test_username"
-    "comment_info": "test comment3"
-}
-return data type: 
+input data example:
 {
-    "username": "",
-    "news": {
-        "news_id": 123,
-        "content_full": "",
-        "comments": [
-            {
-                "username": "username2",
-                "comment_info": "test comment2",
-                "timestamp": "2021-10-31 14:12:11"
-            },
-            {
-                "username": "username1",
-                "comment_info": "test comment3",
-                "timestamp": "2021-10-31 14:02:11"
-            },
-            ...
-        ]
-    }
+    "news_id": 1,
+    "username": "username1",
+    "comment_info": "test comment again",
+    "timestamp": "2021-10-10 10:10:11"
 }
 
+DELETE /discover/delete  (temporaliy depreciated)
+input data example:
+{
+    "news_id": 1,
+    "username": "username1",
+    "comment_info": "test comment again",
+    "timestamp": "2021-10-10 10:10:11"
+}
 ```
+
+# news-service
+
+### deployed link
+
+
+### endpoints
+```
+GET /news
+
+Get a list of corresponding news with specific labels via querying news RDS
+
+output data example:
+{
+    "totalResults": 10,
+    "news": [
+        {
+            "news_id": 0,
+            "label": "business",
+            "title": "business news title 0",
+            "description": "business news description"
+        },
+        {
+            "news_id": 3,
+            "label": "technology",
+            "title": "technology news title 3",
+            "description": "technologt news description"
+        },
+        ...
+    ]
+}
+```
+
+#user-labels-service (lambda function <-> dynamodb)
+
+### deployed link
+
+### dynamodb schema
+```
+{
+    username: "charles57",
+    labels: ["business", "technology"]
+}
+```
+
+### endpoints
+```
+GET /labels?username=charles57
+
+1.Query users Dynamodb Table based on username (users table contains 2 keys: username(strin), labels(a list of strings))
+2.Get user's labels (ex: labels:["business", "technology"])
+
+POST /labels?username=charles57
+
+1.When user likes a news, add current news label to labels,
+ex: (charles57's initial labels is ["business"], after he likes a news with "technology" label, update charles57's label to ["business", "technology"])
+
+```
+
+#news-likes-service (lambda function <-> dynamodb)
+
+### deployed link
+
+### dynamodb schema
+```
+{
+    "news_id": "",
+    "num_likes": 3,
+}
+```
+
+### endpoints
+```
+GET /likes/<newsid>
+output data example:
+{
+    "news_id": 0,
+    "num_likes": 11
+}
+
+POST /likes/<newsid>
+```
+
+
+### Others
+```
+Avaialbale news labels:
+business
+entertainment
+general
+health
+science
+sports
+technology
+
+Discover Page (directly fetch news 3rd party API, independent from news service)
+````
