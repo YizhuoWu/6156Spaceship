@@ -143,12 +143,14 @@ output data example:
             "news_id": 0,
             "label": "business",
             "title": "business news title 0",
+            "url": "www.google.com",
             "description": "business news description"
         },
         {
             "news_id": 3,
             "label": "technology",
             "title": "technology news title 3",
+            "url": "",
             "description": "technologt news description"
         },
         ...
