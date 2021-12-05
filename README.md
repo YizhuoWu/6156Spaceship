@@ -129,6 +129,9 @@ input data example:
 ### endpoints
 ```
 GET /news
+body: {
+    labels: ["business", "technology"]
+}
 
 Description: Get a list of corresponding news with specific labels via querying news RDS
 
