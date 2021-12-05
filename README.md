@@ -130,7 +130,7 @@ input data example:
 ```
 GET /news
 
-Get a list of corresponding news with specific labels via querying news RDS
+Description: Get a list of corresponding news with specific labels via querying news RDS
 
 output data example:
 {
@@ -153,7 +153,7 @@ output data example:
 }
 ```
 
-#user-labels-service (lambda function <-> dynamodb)
+# user-labels-service (lambda function <-> dynamodb)
 
 ### deployed link
 
@@ -169,17 +169,13 @@ output data example:
 ```
 GET /labels?username=charles57
 
+Description:
 1.Query users Dynamodb Table based on username (users table contains 2 keys: username(strin), labels(a list of strings))
 2.Get user's labels (ex: labels:["business", "technology"])
 
-POST /labels?username=charles57
-
-1.When user likes a news, add current news label to labels,
-ex: (charles57's initial labels is ["business"], after he likes a news with "technology" label, update charles57's label to ["business", "technology"])
-
 ```
 
-#news-likes-service (lambda function <-> dynamodb)
+# news-likes-service (lambda function <-> dynamodb)
 
 ### deployed link
 
@@ -194,13 +190,18 @@ ex: (charles57's initial labels is ["business"], after he likes a news with "tec
 ### endpoints
 ```
 GET /likes/<newsid>
+Description: return number of likes associated with specific news
 output data example:
 {
     "news_id": 0,
     "num_likes": 11
 }
 
+
 POST /likes/<newsid>
+Descirption: when user likes a news, update dynamodb "news" and "users" table
+When user likes a news, add current news label to labels,
+ex: (charles57's initial labels is ["business"], after he likes a news with "technology" label, update charles57's label to ["business", "technology"])
 ```
 
 
