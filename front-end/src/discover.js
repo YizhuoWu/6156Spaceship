@@ -23,13 +23,13 @@ class NewsItem extends Component {
 
         // get num likes
         const newsLikesUrl = `${Constants.LIKES_URL_PREFIX}?newsid=${newsId}`;
-        console.log("newsLikesUrl: ", newsLikesUrl);
+        // console.log("newsLikesUrl: ", newsLikesUrl);
 
         fetch(newsLikesUrl)
             .then(res => res.json())
             .then((data) => {
-                console.log("fetch news likes data for newsid=", newsId);
-                console.log("likes data: ", data.num_likes);
+                // console.log("fetch news likes data for newsid=", newsId);
+                // console.log("likes data: ", data.num_likes);
                 this.setState({
                     numLikes: data.num_likes
                 })
@@ -115,7 +115,36 @@ class NewsItem extends Component {
     }
 
     postLike = (newsId) => {
-        console.log("I like newsId=", newsId);
+        // get num likes
+        const newsLikesUrl = `${Constants.LIKES_URL_PREFIX}`;
+        const { username } = this.props;
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                newsid: newsId,
+                username: username
+            })
+        };
+
+        console.log("newsLikesUrl: ", newsLikesUrl);
+        fetch(newsLikesUrl, requestOptions)
+            .then(res => res.json())
+            .then((data) => {
+                // console.log("fetch news likes data for newsid=", newsId);
+                console.log("post likes data: ", data.body);
+                data = JSON.parse(data.body)
+                // console.log("likes data access: ", data["num_likes"]);  
+                this.setState({
+                    numLikes: data["num_likes"]
+                })
+            })
+            .catch(error => console.log('Fetch Likes Error! ' + error.message));
+
+
     }
 
     render() {
@@ -125,7 +154,9 @@ class NewsItem extends Component {
         
         const renderedLikes = <div>
             <button onClick={() => this.postLike(newsId)}>like</button>
-            likes: {numLikes}
+            &nbsp;
+            &nbsp;
+            <b>{numLikes}</b>
         </div>
         
         const renderedComments = this.state.comments.map((comment, i) => 
@@ -208,7 +239,7 @@ class Discover extends Component {
                 articles.forEach((article, index) => {
                     this.setState((prevState) => ({
                         newsList: [...prevState.newsList, {
-                            newsId: index,
+                            newsId: index.toString(),
                             title: article.title,
                             description: article.description
                         }]
