@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/RDB_Application/RDBService.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/RDB_Application/RDBService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/application.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +131,7 @@
       <recent name="$PROJECT_DIR$/news-service" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Python.application">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="6156Spaceship" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,8 +212,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app" />
         <item itemvalue="Python.application" />
+        <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
   </component>
