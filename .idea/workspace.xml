@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/news-population/RDB_Application/RDBService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-population/RDB_Application/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-population/middleware/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-population/middleware/notification.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-population/middleware/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/populate_dynamodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-population/populate_dynamodb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-service/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/application.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,17 +110,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/news-population/RDB_Application" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/news-service" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/news-service" />
       <recent name="$PROJECT_DIR$/news-population/RDB_Application" />
       <recent name="$PROJECT_DIR$/news-population" />
       <recent name="$PROJECT_DIR$" />
       <recent name="D:\Columbia\Fall2021\COMS6156\6156Spaceship\comment-service\Framework" />
-      <recent name="D:\Columbia\Fall2021\COMS6156\6156Spaceship\comment-service\middleware" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/news-population/RDB_Application" />
