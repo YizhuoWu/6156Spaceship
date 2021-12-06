@@ -22,8 +22,6 @@ def get_label(news_id):
 
     with cur_news_connection:
         with cur_news_connection.cursor() as cursor:
-            query_sql = "SELECT `label` from `db-news-schema`.`news_table` WHERE `news_id` = '%s'"
-            cursor.execute(query_sql, news_id)
             query_sql = "select label from `db-news-schema`.`news_table` where news_id = " + news_id
 
             res_news = cursor.execute(query_sql)

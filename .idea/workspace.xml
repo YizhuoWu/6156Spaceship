@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/news-service/RDB_Application/RDBService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-service/RDB_Application/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-service/middleware/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-service/middleware/notification.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-service/middleware/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news-service/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/application.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
