@@ -156,10 +156,12 @@ output data example:
         ...
     ]
 }
+```
 
 
 ```
 GET /news?newsid=1
+
 Description: Get detailed news information with specific label 
 
 output data example:
@@ -172,7 +174,7 @@ output data example:
 }
 ```
 
-# user-labels-service (lambda function <-> dynamodb)
+# user-labels-service
 
 ### deployed link
 
@@ -198,7 +200,7 @@ Description:
 
 ```
 
-# news-likes-service (lambda function <-> dynamodb)
+# news-likes-service
 
 ### deployed link
 
