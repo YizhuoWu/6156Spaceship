@@ -12,7 +12,6 @@ from middleware.notification import notify
 from .net import validate_address
 import requests
 
-executor = ThreadPoolExecutor(16)
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 
