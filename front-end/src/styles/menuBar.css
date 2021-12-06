@@ -1,0 +1,10 @@
+
+.menu-bar {
+    /* background-color: black; */
+    height: 100%;
+    /* width: 300px; */
+    width: 25%;
+    position: fixed;
+    top: 50px;
+    left: 0px;
+}
