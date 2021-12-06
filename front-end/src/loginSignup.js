@@ -1,43 +1,11 @@
 import React, { Component, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import Login from './googleLogin';
+import TestLogin from './testLogin';
+// import MenuBar from './navigation';
 
-const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+const prefixUrl = "https://em85ugzj5d.execute-api.us-east-1.amazonaws.com/v1"
+const loginPageUrl = `${prefixUrl}/profile`;
 
-    // const { authenticate } = useContext(AccountContext);
-
-    const history = useHistory();
-
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        console.log("username: ", username)
-        history.push(`/discover/${username}/`);
-    };
-
-    return(
-        <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="username">username</label>
-                <input placeholder="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                ></input>
-                <br/>
-                <br/>
-                <label htmlFor="password">password</label>
-                <input placeholder="password"
-                    value={password}
-                    onChange={(e)=> setPassword(e.target.value)}
-                ></input>
-                <br/>
-                <br />
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
-}
 
 class LoginSignup extends Component {
 
@@ -47,34 +15,33 @@ class LoginSignup extends Component {
         signUpView: false,
     }
 
+    componentDidMount = () => {
+        // fetch(loginPageUrl)
+        //     .then(res => res.json())
+        //     .then((res) => {
+        //         console.log("res: ", res)
+        //     })
+    }
+
     switchView = () => {
         this.setState((prevState) => ({
             signUpView: !prevState.signUpView
         }));
     }
 
+
     render() {
-        const buttonName = this.state.signUpView ? "Login" : "SignUp"
 
         return(
             <div className="login">
 
-                <h1></h1>
+                <h1>NewsFeed</h1>
 
-                {/* <button onClick={this.submitAuthInfo} >
-                    Redirect
-                </button> */}
-
-                <button onClick={this.switchView}>
-                    {buttonName}
-                </button>
                 <br /> <br />
- 
-                {this.state.signUpView ? 
-                    <Login />
-                :
-                    <Login />
-                }
+                <Login/>
+
+                 <br /> <br />
+                 <TestLogin />
             
             </div>
         )
