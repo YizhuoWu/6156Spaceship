@@ -32,3 +32,10 @@ def valid_email(email):
     if re.match(r'(.+)@(.+).(.+)', email) is None:
         return False
     return True
+
+
+def allowed_post_body(body, allowed_keys):
+    for key in body:
+        if key not in allowed_keys:
+            return False
+    return True
