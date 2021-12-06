@@ -133,7 +133,7 @@ body: {
     labels: ["business", "technology"]
 }
 
-Description: Get a list of corresponding news with specific labels via querying news RDS
+Description: Get a list of corresponding news with specific label via querying news RDS
 
 output data example:
 {
@@ -156,6 +156,20 @@ output data example:
         ...
     ]
 }
+
+
+```
+GET /news?newsid=1
+Description: Get detailed news information with specific label 
+
+output data example:
+{
+    "newsid": 1,
+    "label": "technology",
+    "title": "technology news title 3",
+    "url": "",
+    "description": "technology news description"
+}
 ```
 
 # user-labels-service (lambda function <-> dynamodb)
@@ -164,9 +178,13 @@ output data example:
 
 ### dynamodb schema
 ```
+user-labels table schema
 {
     username: "charles57",
-    labels: ["business", "technology"]
+    labels: {
+        "business": 2,
+        "technolgy": 1
+    }
 }
 ```
 
@@ -186,6 +204,7 @@ Description:
 
 ### dynamodb schema
 ```
+news table schema
 {
     "news_id": "",
     "num_likes": 3,
@@ -194,7 +213,7 @@ Description:
 
 ### endpoints
 ```
-GET /likes/<newsid>
+GET /likes?newsid=<newsid>
 Description: return number of likes associated with specific news
 output data example:
 {
@@ -203,10 +222,25 @@ output data example:
 }
 
 
-POST /likes/<newsid>
-Descirption: when user likes a news, update dynamodb "news" and "users" table
+POST /likes
+body: {
+    newsid: "1002"
+}
+
+1.Update "news" dynamodb table
+
+(2).Update users labels
+   fetch(GET newsid's labels)
+   fetch(POST update "users-labels" dynamodb table)
+
+Descirption: when user likes a news
+
+1.Update dynamodb "news" 
+increment num_likes value by 1
+
+(2).Update "users" table
 When user likes a news, add current news label to labels,
-ex: (charles57's initial labels is ["business"], after he likes a news with "technology" label, update charles57's label to ["business", "technology"])
+ex: (charles57's initial labels is {"business":2}, after he likes a news with "technology" label, update charles57's label to {"business":2, "technology:1"})
 ```
 
 

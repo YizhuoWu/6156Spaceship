@@ -14,11 +14,28 @@ class NewsItem extends Component {
     state = {
         commentView: false,
         userInput: "",
-        comments: []
+        comments: [],
+        numLikes: 0
     }
 
     componentDidMount = () => {
         const { newsId } = this.props;
+
+        // get num likes
+        const newsLikesUrl = `${Constants.LIKES_URL_PREFIX}?newsid=${newsId}`;
+        console.log("newsLikesUrl: ", newsLikesUrl);
+
+        fetch(newsLikesUrl)
+            .then(res => res.json())
+            .then((data) => {
+                console.log("fetch news likes data for newsid=", newsId);
+                console.log("likes data: ", data.num_likes);
+                this.setState({
+                    numLikes: data.num_likes
+                })
+            })
+            .catch(error => console.log('Fetch Likes Error! ' + error.message));
+
     }
 
     userInputOnChange = (e) => {
@@ -29,6 +46,7 @@ class NewsItem extends Component {
 
     // click (display)comment button
     commentHandler = (newsId) => {
+
         // display comment view
         this.setState((prevState) => ({
             commentView: !prevState.commentView
@@ -96,10 +114,20 @@ class NewsItem extends Component {
             });
     }
 
+    postLike = (newsId) => {
+        console.log("I like newsId=", newsId);
+    }
+
     render() {
         const { newsId, title, description } = this.props;
-        const { commentView } = this.state;
+        const { commentView, numLikes } = this.state;
         const placeHolderText = `comment for news ${newsId}`;
+        
+        const renderedLikes = <div>
+            <button onClick={() => this.postLike(newsId)}>like</button>
+            likes: {numLikes}
+        </div>
+        
         const renderedComments = this.state.comments.map((comment, i) => 
             <div key={i}>
                 <b>{comment.comment_info}</b>
@@ -111,6 +139,9 @@ class NewsItem extends Component {
             <div class="news-item">
                 <h3>{title}</h3>
                 <p>{description}</p>
+
+                {renderedLikes}
+
                 <button onClick={() => this.commentHandler(newsId)}>Comment</button>
                 
                 {commentView ?
