@@ -33,7 +33,7 @@ input data example:
     "news_id": 1,
     "username": "username1",
     "comment_info": "test comment again",
-//    "timestamp": "2021-10-10 10:10:11" (This should be generated inside code)
+    "timestamp": "2021-10-10 10:10:11" (This should be generated inside code)
 }
 
 DELETE /discover/delete
