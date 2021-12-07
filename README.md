@@ -198,6 +198,17 @@ Description:
 1.Query users Dynamodb Table based on username (users table contains 2 keys: username(strin), labels(a list of strings))
 2.Get user's labels (ex: labels:["business", "technology"])
 
+output data example
+{
+    "username": "charles57",
+    "labels": {
+        "business": 3,
+        "technology": 2,
+        ...
+        "general": 0
+    }
+}
+
 ```
 
 # news-likes-service

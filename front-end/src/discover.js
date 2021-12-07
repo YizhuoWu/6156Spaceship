@@ -52,11 +52,11 @@ class NewsItem extends Component {
             commentView: !prevState.commentView
         }))
         // clear comments
-        this.setState({
-            comments: []
-        }) 
+        // this.setState({
+        //     comments: []
+        // }) 
 
-        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${newsId}`; // <newsid>
+        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${parseInt(newsId)}`; // <newsid>
         console.log("newsCommentUrl: ", newsCommentUrl);
 
         fetch(newsCommentUrl)
@@ -93,10 +93,9 @@ class NewsItem extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    "news_id": newsId,
+                    "news_id": parseInt(newsId),
                     "username": username,
-                    "comment_info": commentInfo,
-                    "timestamp": currentTime
+                    "comment_info": commentInfo
                 }
             )
         };
@@ -212,11 +211,46 @@ class NewsList extends Component {
 }
 
 
+// props: location, props.match: username
 class Discover extends Component {
 
     state = {
         userInput: "",
-        newsList: []
+        newsList: [],
+        labelFreqMap: new Object()
+    }
+
+    // fetch user labels data
+    componentDidMount = () => {
+        const { username } = this.props.match.params;
+        const userLabelsUrl = `${Constants.USER_LABELS_URL_PREFIX}?username=${username}`;
+        console.log("userLabelsUrl: ", userLabelsUrl);
+
+        fetch(userLabelsUrl)
+            .then(response => response.json())
+            .then((data) => {
+                // console.log("users labels data: ", data);
+                // console.log("username: ", data.username);
+                // console.log("labels: ", data.labels);
+                this.setState({
+                    labelFreqMap: data.labels
+                });
+                Object.entries(data.labels).forEach((item, index) => {
+                    const label = item[0];
+                    const freq = item[1];
+                    // this.setState({
+                    //     labelFreqMap: 
+                    // })
+                    console.log("label=", label, ", freq=", freq);
+                    this.setState(prevState => ({
+                        labelFreqMap: {
+                            ...prevState.labelFreqMap,
+                            [label]: freq
+                        }
+                    }));
+                })
+            })
+
     }
 
     changeUserInput = (e) => {
@@ -261,6 +295,19 @@ class Discover extends Component {
         const { pathname } = this.props.location;
         const { newsList } = this.state;
 
+        console.log("this.state.labelFreqMap: ", this.state.labelFreqMap);
+        console.log("Object.entries: ", Object.entries(this.state.labelFreqMap));
+        Object.entries(this.state.labelFreqMap).forEach((item, index) => {
+            console.log("#item: ", item, ", index: ", index);
+        });
+
+        const renderedUserLabels = Object.entries(this.state.labelFreqMap).forEach((item, index) => (
+            <div key={index}>
+                <p>{item[0]}</p>:<p>{item[1]}</p>
+                &nbsp; &nbsp; 
+            </div>
+        ));
+        
         return(
             <div>
                 <MenuBar username={username} pathname={pathname}/>
@@ -274,7 +321,11 @@ class Discover extends Component {
                     
                     <button onClick={this.searchNews}>
                         Search
-                    </button>            
+                    </button>       
+
+                    {/* <div class="user-labels">
+                        {renderedUserLabels}
+                    </div>      */}
                 </div>
 
                 <NewsList newsList={newsList} username={username} />

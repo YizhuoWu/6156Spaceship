@@ -11,5 +11,8 @@ const LIKES_URL_PREFIX = "https://em85ugzj5d.execute-api.us-east-1.amazonaws.com
 // userProfile
 const USER_PROFILE_URL_PREFIX = "http://ec2-107-23-18-108.compute-1.amazonaws.com:5000/api/v1/users";
 
+// get user labels
+const USER_LABELS_URL_PREFIX = "https://em85ugzj5d.execute-api.us-east-1.amazonaws.com/v1/labels";
 
-export { CLIENT_ID, API_KEY, COMMENT_URL_PREFIX, LIKES_URL_PREFIX, USER_PROFILE_URL_PREFIX };
+
+export { CLIENT_ID, API_KEY, COMMENT_URL_PREFIX, LIKES_URL_PREFIX, USER_PROFILE_URL_PREFIX, USER_LABELS_URL_PREFIX };
