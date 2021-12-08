@@ -170,8 +170,8 @@ def get_user_labels_handler(event, context):
 
 
 def news_likes_handler(event, context):
-	dynamodb = boto3.resource('dynamodb')
-	news_table = dynamodb.Table("news")
+    dynamodb = boto3.resource('dynamodb')
+    news_table = dynamodb.Table("news")
 	newsid = '2'
 	username = "testuser_alpha_001"
 

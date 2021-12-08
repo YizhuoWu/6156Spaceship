@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useHistory } from "react-router-dom";
 import MenuBar from './navigation';
 import * as Constants from './constants';
-import './styles/newsList.css';
+import './styles/discover.css';
 
 // ref: https://newsapi.org/docs/get-started
 const API_KEY =  Constants.API_KEY;
@@ -111,6 +111,11 @@ class NewsItem extends Component {
                     }]
                 }));
             });
+
+        // reset userInput
+        this.setState({
+            userInput: ""
+        })
     }
 
     postLike = (newsId) => {
@@ -151,34 +156,42 @@ class NewsItem extends Component {
         const { commentView, numLikes } = this.state;
         const placeHolderText = `comment for news ${newsId}`;
         
-        const renderedLikes = <div>
-            <button onClick={() => this.postLike(newsId)}>like</button>
-            &nbsp;
+        const renderedLikes = <div class="likes">
+            <button id="like_button" onClick={() => this.postLike(newsId)}></button>
             &nbsp;
             <b>{numLikes}</b>
         </div>
         
         const renderedComments = this.state.comments.map((comment, i) => 
-            <div key={i}>
-                <b>{comment.comment_info}</b>
-                <p>{comment.username} | {comment.timestamp}</p>
+            <div key={i} class="comment-list">
+                <b>{comment.username}</b> 
+                &nbsp; &nbsp; &nbsp;
+                <div class="inline-block:left">
+                    <p>{comment.timestamp}</p>
+                </div>
+                <p>{comment.comment_info}</p>
             </div>
         );
 
         return (
             <div class="news-item">
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 <p>{description}</p>
 
                 {renderedLikes}
 
-                <button onClick={() => this.commentHandler(newsId)}>Comment</button>
+                <div onClick={() => this.commentHandler(newsId)}>
+                    <button id="comment_button">.</button>
+                    <b>Comment</b>
+                </div>
                 
                 {commentView ?
-                    <div>
-                        {renderedComments}
+                    <div class="comment">
+                        <div class="comment-content">
+                            {renderedComments}
+                        </div>
                         <input type="text" placeholder={placeHolderText} name="userInput" value={this.state.userInput} onChange={this.userInputOnChange}></input>  
-                        <button onClick={this.postComment}>post</button>  
+                        <button id="post_button" onClick={this.postComment}>Post</button>  
                     </div>
                     :
                     <div></div>
@@ -216,7 +229,7 @@ class Discover extends Component {
 
     state = {
         userInput: "",
-        newsList: [],
+        newsList: [{newsId:"1", title:"testing title", description:"testing description"}],
         labelFreqMap: new Object()
     }
 
@@ -226,30 +239,30 @@ class Discover extends Component {
         const userLabelsUrl = `${Constants.USER_LABELS_URL_PREFIX}?username=${username}`;
         console.log("userLabelsUrl: ", userLabelsUrl);
 
-        fetch(userLabelsUrl)
-            .then(response => response.json())
-            .then((data) => {
-                // console.log("users labels data: ", data);
-                // console.log("username: ", data.username);
-                // console.log("labels: ", data.labels);
-                this.setState({
-                    labelFreqMap: data.labels
-                });
-                Object.entries(data.labels).forEach((item, index) => {
-                    const label = item[0];
-                    const freq = item[1];
-                    // this.setState({
-                    //     labelFreqMap: 
-                    // })
-                    console.log("label=", label, ", freq=", freq);
-                    this.setState(prevState => ({
-                        labelFreqMap: {
-                            ...prevState.labelFreqMap,
-                            [label]: freq
-                        }
-                    }));
-                })
-            })
+        // fetch(userLabelsUrl)
+        //     .then(response => response.json())
+        //     .then((data) => {
+        //         // console.log("users labels data: ", data);
+        //         // console.log("username: ", data.username);
+        //         // console.log("labels: ", data.labels);
+        //         this.setState({
+        //             labelFreqMap: data.labels
+        //         });
+        //         Object.entries(data.labels).forEach((item, index) => {
+        //             const label = item[0];
+        //             const freq = item[1];
+        //             // this.setState({
+        //             //     labelFreqMap: 
+        //             // })
+        //             console.log("label=", label, ", freq=", freq);
+        //             this.setState(prevState => ({
+        //                 labelFreqMap: {
+        //                     ...prevState.labelFreqMap,
+        //                     [label]: freq
+        //                 }
+        //             }));
+        //         })
+        //     })
 
     }
 
