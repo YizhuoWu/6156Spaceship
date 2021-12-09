@@ -124,7 +124,7 @@ input data example:
 # news-service
 
 ### deployed link
-
+http://newsservice-env.eba-2pjdsqjc.us-east-1.elasticbeanstalk.com/
 
 ### endpoints
 ```
