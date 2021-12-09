@@ -18,7 +18,7 @@ class RDBService:
     def get_db_connection(cls, dbname):
 
         db_info = context.get_db_info(dbname)
-        print("db_info: ",db_info)
+        #print("db_info: ",db_info)
         try:
             db_connection = pymysql.connect(**db_info, autocommit=True)
         except pymysql.Error as error:

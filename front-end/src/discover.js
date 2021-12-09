@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useHistory } from "react-router-dom";
 import MenuBar from './navigation';
 import * as Constants from './constants';
-import './styles/newsList.css';
+import './styles/discover.css';
 
 // ref: https://newsapi.org/docs/get-started
 const API_KEY =  Constants.API_KEY;
@@ -52,11 +52,11 @@ class NewsItem extends Component {
             commentView: !prevState.commentView
         }))
         // clear comments
-        this.setState({
-            comments: []
-        }) 
+        // this.setState({
+        //     comments: []
+        // }) 
 
-        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${newsId}`; // <newsid>
+        const newsCommentUrl = `${Constants.COMMENT_URL_PREFIX}/${parseInt(newsId)}`; // <newsid>
         console.log("newsCommentUrl: ", newsCommentUrl);
 
         fetch(newsCommentUrl)
@@ -93,10 +93,9 @@ class NewsItem extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    "news_id": newsId,
+                    "news_id": parseInt(newsId),
                     "username": username,
-                    "comment_info": commentInfo,
-                    "timestamp": currentTime
+                    "comment_info": commentInfo
                 }
             )
         };
@@ -112,6 +111,11 @@ class NewsItem extends Component {
                     }]
                 }));
             });
+
+        // reset userInput
+        this.setState({
+            userInput: ""
+        })
     }
 
     postLike = (newsId) => {
@@ -152,34 +156,42 @@ class NewsItem extends Component {
         const { commentView, numLikes } = this.state;
         const placeHolderText = `comment for news ${newsId}`;
         
-        const renderedLikes = <div>
-            <button onClick={() => this.postLike(newsId)}>like</button>
-            &nbsp;
+        const renderedLikes = <div class="likes">
+            <button id="like_button" onClick={() => this.postLike(newsId)}></button>
             &nbsp;
             <b>{numLikes}</b>
         </div>
         
         const renderedComments = this.state.comments.map((comment, i) => 
-            <div key={i}>
-                <b>{comment.comment_info}</b>
-                <p>{comment.username} | {comment.timestamp}</p>
+            <div key={i} class="comment-list">
+                <b>{comment.username}</b> 
+                &nbsp; &nbsp; &nbsp;
+                <div class="inline-block:left">
+                    <p>{comment.timestamp}</p>
+                </div>
+                <p>{comment.comment_info}</p>
             </div>
         );
 
         return (
             <div class="news-item">
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 <p>{description}</p>
 
                 {renderedLikes}
 
-                <button onClick={() => this.commentHandler(newsId)}>Comment</button>
+                <div onClick={() => this.commentHandler(newsId)}>
+                    <button id="comment_button">.</button>
+                    <b>Comment</b>
+                </div>
                 
                 {commentView ?
-                    <div>
-                        {renderedComments}
+                    <div class="comment">
+                        <div class="comment-content">
+                            {renderedComments}
+                        </div>
                         <input type="text" placeholder={placeHolderText} name="userInput" value={this.state.userInput} onChange={this.userInputOnChange}></input>  
-                        <button onClick={this.postComment}>post</button>  
+                        <button id="post_button" onClick={this.postComment}>Post</button>  
                     </div>
                     :
                     <div></div>
@@ -212,11 +224,46 @@ class NewsList extends Component {
 }
 
 
+// props: location, props.match: username
 class Discover extends Component {
 
     state = {
         userInput: "",
-        newsList: []
+        newsList: [{newsId:"1", title:"testing title", description:"testing description"}],
+        labelFreqMap: new Object()
+    }
+
+    // fetch user labels data
+    componentDidMount = () => {
+        const { username } = this.props.match.params;
+        const userLabelsUrl = `${Constants.USER_LABELS_URL_PREFIX}?username=${username}`;
+        console.log("userLabelsUrl: ", userLabelsUrl);
+
+        // fetch(userLabelsUrl)
+        //     .then(response => response.json())
+        //     .then((data) => {
+        //         // console.log("users labels data: ", data);
+        //         // console.log("username: ", data.username);
+        //         // console.log("labels: ", data.labels);
+        //         this.setState({
+        //             labelFreqMap: data.labels
+        //         });
+        //         Object.entries(data.labels).forEach((item, index) => {
+        //             const label = item[0];
+        //             const freq = item[1];
+        //             // this.setState({
+        //             //     labelFreqMap: 
+        //             // })
+        //             console.log("label=", label, ", freq=", freq);
+        //             this.setState(prevState => ({
+        //                 labelFreqMap: {
+        //                     ...prevState.labelFreqMap,
+        //                     [label]: freq
+        //                 }
+        //             }));
+        //         })
+        //     })
+
     }
 
     changeUserInput = (e) => {
@@ -261,6 +308,19 @@ class Discover extends Component {
         const { pathname } = this.props.location;
         const { newsList } = this.state;
 
+        console.log("this.state.labelFreqMap: ", this.state.labelFreqMap);
+        console.log("Object.entries: ", Object.entries(this.state.labelFreqMap));
+        Object.entries(this.state.labelFreqMap).forEach((item, index) => {
+            console.log("#item: ", item, ", index: ", index);
+        });
+
+        const renderedUserLabels = Object.entries(this.state.labelFreqMap).forEach((item, index) => (
+            <div key={index}>
+                <p>{item[0]}</p>:<p>{item[1]}</p>
+                &nbsp; &nbsp; 
+            </div>
+        ));
+        
         return(
             <div>
                 <MenuBar username={username} pathname={pathname}/>
@@ -274,7 +334,11 @@ class Discover extends Component {
                     
                     <button onClick={this.searchNews}>
                         Search
-                    </button>            
+                    </button>       
+
+                    {/* <div class="user-labels">
+                        {renderedUserLabels}
+                    </div>      */}
                 </div>
 
                 <NewsList newsList={newsList} username={username} />

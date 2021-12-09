@@ -124,7 +124,7 @@ input data example:
 # news-service
 
 ### deployed link
-
+http://newsservice-env.eba-2pjdsqjc.us-east-1.elasticbeanstalk.com/
 
 ### endpoints
 ```
@@ -197,6 +197,17 @@ GET /labels?username=charles57
 Description:
 1.Query users Dynamodb Table based on username (users table contains 2 keys: username(strin), labels(a list of strings))
 2.Get user's labels (ex: labels:["business", "technology"])
+
+output data example
+{
+    "username": "charles57",
+    "labels": {
+        "business": 3,
+        "technology": 2,
+        ...
+        "general": 0
+    }
+}
 
 ```
 
