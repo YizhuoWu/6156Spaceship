@@ -2,6 +2,7 @@ from flask import Flask, Response, request, jsonify
 from flask_cors import CORS
 from RDB_Application.RDBService import RDBService as RDBService
 import json
+import random
 #import logging
 
 application = Flask(__name__)
@@ -36,13 +37,25 @@ def get_news():
             with cur_news_connection.cursor() as cursor:
                 #print(2)
                 query_sql = "select * from `db-news-schema`.`news_table` where `category` = " + "'"+label+"'"
-                query_sql += " LIMIT "
-                query_sql += str(news_per_cate)
+                #query_sql += " LIMIT "
+                #query_sql += str(news_per_cate)
                 #print(query_sql)
 
                 res_news = cursor.execute(query_sql)
                 res_news = cursor.fetchall()
-                result += res_news
+
+                #generate random index of news of current_labels
+                random_result_index = []
+                random_result = []
+                total_result = len(res_news)
+                cnt = 0
+                while cnt < news_per_cate:
+                    random_index = random.randint(0, total_result)
+                    if random_index not in random_result_index:
+                        random_result_index.append(random_index)
+                        cnt += 1
+                random_result = [res_news[i] for i in random_result_index]
+                result += random_result
 
     #make result to return
     json_result = {"totalResults": len(result),
