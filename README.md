@@ -258,7 +258,7 @@ ex: (charles57's initial labels is {"business":2}, after he likes a news with "t
 POST /news-meta/start
 with the following request body:
 {
-   "input": "{\"queryStringParameters\": {\"newsid\": \"1\"}}",
+   "input": "{\"queryStringParameters\": {\"newsid\": \"<news-id>\"}}",
    "name": "<execution-name>",
    "stateMachineArn": "<state-machine-arn>"
 }
