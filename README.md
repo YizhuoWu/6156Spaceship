@@ -128,11 +128,7 @@ http://newsservice-env.eba-2pjdsqjc.us-east-1.elasticbeanstalk.com/
 
 ### endpoints
 ```
-GET /news
-body: {
-    labels: ["business", "technology"]
-}
-
+GET /news?labels="['business','sports']"
 Description: Get a list of corresponding news with specific label via querying news RDS
 
 output data example:
@@ -160,7 +156,7 @@ output data example:
 
 
 ```
-GET /news?newsid=1
+GET /news/newsid=1
 
 Description: Get detailed news information with specific label 
 
