@@ -252,6 +252,29 @@ When user likes a news, add current news label to labels,
 ex: (charles57's initial labels is {"business":2}, after he likes a news with "technology" label, update charles57's label to {"business":2, "technology:1"})
 ```
 
+## Step Function:
+### To Execute StateMachine:
+```
+POST /news-meta/start
+with the following request body:
+{
+   "input": "{\"queryStringParameters\": {\"newsid\": \"1\"}}",
+   "name": "<execution-name>",
+   "stateMachineArn": "<state-machine-arn>"
+}
+```
+    
+### To Get Execution Status (Result):
+```
+POST /news-meta/describe
+with the following request body:
+{
+   "executionArn": "<execution-arn>"
+}
+where 
+<execution-arn> = <state-machine-arn-replace-”stateMachine”-with-”execution”>:<execution-name>
+```
+
 
 ### Others
 ```
