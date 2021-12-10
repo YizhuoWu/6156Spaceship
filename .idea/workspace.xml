@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="Add comments microservice">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +249,7 @@
       <workItem from="1634233327150" duration="1049000" />
       <workItem from="1638733637402" duration="562000" />
       <workItem from="1638739989850" duration="1001000" />
-      <workItem from="1639077118994" duration="2117000" />
+      <workItem from="1639077118994" duration="4060000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments microservice">
       <created>1634101843864</created>
