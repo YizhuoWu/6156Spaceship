@@ -156,7 +156,7 @@ output data example:
 
 
 ```
-GET /news/newsid=1
+GET /news/newsid
 
 Description: Get detailed news information with specific label 
 
