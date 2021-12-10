@@ -41,11 +41,11 @@ def set_user_profile_by_username(username):
     if not allowed_post_body(body, ['email', 'address', 'username', 'state', 'city', 'street', 'street2', 'zipcode']):
         return bad_request('invalid request body')
 
-    method = request.args.get('create')
+    method = request.args.get('method')
     if method is None:
         method = 'update'
-    else:
-        method = 'create'
+    if method != 'create' and method != 'update':
+        return bad_request('unsupported method')
 
     email = body.get('email')
     if method == 'create' and email is None:
