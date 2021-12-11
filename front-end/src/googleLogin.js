@@ -15,7 +15,12 @@ export default function Login() {
         const email = res.profileObj.email;
         const username = email.substr(0, email.indexOf('@'))
         console.log('username: ', username);
-        history.push(`/discover/${username}`);
+        history.push(`/search/${username}`);
+        // history.push('/auth/google_oauth2/callback');
+
+        // localStorage.getItem('username') === 'undefined';
+        localStorage.setItem("username", username);
+        alert("local set usnerame = ", username);
     };
 
     const onFailure = (res) => {

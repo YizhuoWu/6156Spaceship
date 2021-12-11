@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Login from './googleLogin';
 import TestLogin from './testLogin';
 // import MenuBar from './navigation';
@@ -8,47 +9,29 @@ const prefixUrl = "https://em85ugzj5d.execute-api.us-east-1.amazonaws.com/v1"
 const loginPageUrl = `${prefixUrl}/profile`;
 
 
-class LoginSignup extends Component {
+export default function LoginSignup() {
+    const history = useHistory();
 
-    state = {
-        username: "",
-        password: "",
-        signUpView: false,
-    }
+    // if (localStorage.getItem('username') === 'undefined') {
+    //     console.log("username===undefine");
+    // } else {
+    //     const username = localStorage.getItem('username');
+    //     history.push(`/discover/${username}`);
+    // }
 
-    componentDidMount = () => {
-        // fetch(loginPageUrl)
-        //     .then(res => res.json())
-        //     .then((res) => {
-        //         console.log("res: ", res)
-        //     })
-    }
+    return(
+        <div class="login">
 
-    switchView = () => {
-        this.setState((prevState) => ({
-            signUpView: !prevState.signUpView
-        }));
-    }
+            <body>
+                <h1>NewsFeed</h1>
 
+                <br /> <br />
+                <Login/>
 
-    render() {
-
-        return(
-            <div className="login">
-
-                <body>
-                    <h1>NewsFeed</h1>
-
-                    <br /> <br />
-                    <Login/>
-
-                    <br /> <br />
-                    <TestLogin />
-                </body>
-            
-            </div>
-        )
-    }
+                <br /> <br />
+                <TestLogin />
+            </body>
+        
+        </div>
+    )
 }
-
-export default LoginSignup;

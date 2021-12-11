@@ -6,6 +6,27 @@
     padding: 20px;
     margin-right: 10%;
     text-align: left;
+
+    border-radius: 10px;
+}
+
+.user-profile h2 {
+    color: #00274C;
+}
+
+.user-profile h3 {
+    color: #00274C;
+}
+
+.user-profile input {
+    height: 25px;
+    width: 740px;
+    font-size: 20px;
+    margin-bottom: 1%;
+    padding: 5px;
+    border-radius: 2px;
+    border-width: 0.5px;
+    border-color: #00274C;
 }
 
 .edit {

@@ -19,6 +19,13 @@
     margin-right: 5%;
 }
 
+.news-item img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    width: 600px;
+}
+
 .news-item h2{
     color: #00274C;
 }

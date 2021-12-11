@@ -34,7 +34,7 @@ class NewsItem extends Component {
                     numLikes: data.num_likes
                 })
             })
-            .catch(error => console.log('Fetch Likes Error! ' + error.message));
+            .catch(error => console.log('NEwsItem ComponentDidmout Fetch Likes Error! ' + error.message));
 
     }
 
@@ -62,11 +62,14 @@ class NewsItem extends Component {
         fetch(newsCommentUrl)
             .then(res => res.json())
             .then((data) => {
+                console.log("news comments length:", data.comments.length);
+                
                 // news_id, content_full, comments
                 if (typeof data === 'undefined' || typeof data.news === 'undefined' || typeof data.news.comments === 'undefined') {
                     return;
                 }
-                data.news.comments.forEach((comment, index) => {
+                data.comments.forEach((comment, index) => {
+                    console.log("comment.usernmae: ", comment.username);
                     this.setState((prevState) => ({
                         comments: [...prevState.comments, {
                             username: comment.username,
@@ -102,7 +105,6 @@ class NewsItem extends Component {
         fetch(newsCommentUrl, requestOptions)
             .then(response => response.json())
             .then((data) => {
-                console.log("post comment: ", data);
                 this.setState((prevState) => ({
                     comments: [...prevState.comments, {
                         username: username,
@@ -233,12 +235,46 @@ class Discover extends Component {
         labelFreqMap: new Object()
     }
 
-    // fetch user labels data
+    // fetch news feed data
     componentDidMount = () => {
+        
         const { username } = this.props.match.params;
-        const userLabelsUrl = `${Constants.USER_LABELS_URL_PREFIX}?username=${username}`;
-        console.log("userLabelsUrl: ", userLabelsUrl);
 
+        const labels = ["business", "technology"];
+        const dumpsLabels = labels.toString();
+        const searchNewsUrl = `${Constants.NEWS_SERVICE_PREFIX}/news?labels=${dumpsLabels}`;
+        
+        //const searchNewsUrl = `https://r6j4gqobqa.execute-api.us-east-1.amazonaws.com/v1/news?labels="['business']"`;
+        console.log("searchNewsUrl: ", searchNewsUrl);
+
+        fetch(searchNewsUrl)
+            .then(res => res.json())
+            .then((data) => {
+                console.log("searchNews data: ", data);
+                if (typeof data.articles === 'undefined') {
+                    return;
+                }
+                const articles = data.articles.slice(0, 10);
+                articles.forEach((article, index) => {
+                    this.setState((prevState) => ({
+                        newsList: [...prevState.newsList, {
+                            newsId: index.toString(),
+                            title: article.title,
+                            description: article.description
+                        }]
+                    }));
+                });//articles
+            })//then
+
+
+        // const userLabelsUrl = `${Constants.USER_LABELS_URL_PREFIX}?username=${username}`;
+        // console.log("userLabelsUrl: ", userLabelsUrl);
+
+        // console.log("get user-labels: ", localStorage.getItem("user-labels"));
+
+        // Object.keys(localStorage.getItem("user-labels")).forEach((label) => {
+        //     console.log("user label: ", label);
+        // })
         // fetch(userLabelsUrl)
         //     .then(response => response.json())
         //     .then((data) => {
@@ -274,25 +310,31 @@ class Discover extends Component {
 
     // news feed api
     searchNews = () => {
-        const searchNewsUrl = `${urlPrefix}?q=${this.state.userInput}&apiKey=${API_KEY}`;
-        fetch(searchNewsUrl)
-            .then(res => res.json())
-            .then((data) => {
-                console.log("searchNews data: ", data);
-                if (typeof data.articles === 'undefined') {
-                    return;
-                }
-                const articles = data.articles.slice(0, 10);
-                articles.forEach((article, index) => {
-                    this.setState((prevState) => ({
-                        newsList: [...prevState.newsList, {
-                            newsId: index.toString(),
-                            title: article.title,
-                            description: article.description
-                        }]
-                    }));
-                });//articles
-            })//then
+        //const searchNewsUrl = `${urlPrefix}?q=${this.state.userInput}&apiKey=${API_KEY}`;
+        
+        // const dumpsLabels = JSON.stringify(["business", "technology"]);
+        // const searchNewsUrl = `${Constants.NEWS_SERVICE_PREFIX}/news?labels=${dumpsLabels}`;
+        // console.log("searchNewsUrl: ", searchNewsUrl);
+
+        // fetch(searchNewsUrl)
+        //     .then(res => res.json())
+        //     .then((data) => {
+        //         console.log("searchNews data: ", data);
+        //         if (typeof data.articles === 'undefined') {
+        //             return;
+        //         }
+        //         const articles = data.articles.slice(0, 10);
+        //         articles.forEach((article, index) => {
+        //             this.setState((prevState) => ({
+        //                 newsList: [...prevState.newsList, {
+        //                     newsId: index.toString(),
+        //                     title: article.title,
+        //                     description: article.description
+        //                 }]
+        //             }));
+        //         });//articles
+        //     })//then
+
     }//searchNews
 
     getNewsComment = () => {

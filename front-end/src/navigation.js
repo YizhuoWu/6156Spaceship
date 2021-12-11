@@ -21,12 +21,20 @@ const MenuBar = (props) => {
                     history.push(itemId);
                 }}
                 items={[
+                // {
+                //     title: 'Discover',
+                //     itemId: `/discover/${username}`,
+                //     // you can use your own custom Icon component as well
+                //     // icon is optional
+                //     //elemBefore: () => <Icon name="inbox" />,
+                // },
                 {
-                    title: 'Discover',
-                    itemId: `/discover/${username}`,
-                    // you can use your own custom Icon component as well
-                    // icon is optional
-                    //elemBefore: () => <Icon name="inbox" />,
+                    title: 'Search',
+                    itemId: `/search/${username}`,
+                },
+                {
+                    title: 'Detail',
+                    itemId: `/detail/${username}`,
                 },
                 {
                     title: 'Profile',

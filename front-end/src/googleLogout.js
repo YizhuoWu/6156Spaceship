@@ -9,7 +9,10 @@ const clientId = Constants.CLIENT_ID;
 export default function Logout() {
     const history = useHistory();
     const onSuccess = (res) => {
-        alert('Logout successfully');
+        alert(`Logout successfully username=${localStorage.getItem("username")}`);
+        
+        localStorage.setItem("username", "");
+        
         history.push(`/`);
     }
     return (

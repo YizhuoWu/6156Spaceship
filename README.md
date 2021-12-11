@@ -61,18 +61,29 @@ http://ec2-107-23-18-108.compute-1.amazonaws.com:5000/
 GET /api/v1/users/danielleboyd
 output data example:
 {
-    "address": "41506 Eric Port\nLoweland, DE 40062",
-    "city": "New Ryan",
-    "email": "Christina.Stokes@columbia.edu",
-    "links": [
-        {
-            "rel": "self",
-            "url": "/api/v1/users/danielleboyd"
-        }
-    ],
-    "state": "New Mexico",
-    "username": "danielleboyd"
+    'statusCode': 200,
+    'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    },
+    'body': json.dumps({
+        "address": "41506 Eric Port\nLoweland, DE 40062",
+        "city": "New Ryan",
+        "email": "Christina.Stokes@columbia.edu",
+        "links": [
+            {
+                "rel": "self",
+                "url": "/api/v1/users/danielleboyd"
+            }
+        ],
+        "state": "New Mexico",
+        "username": "danielleboyd"
+    }),
+    'isBase64Encoded': False
 }
+
 ```
 
 # comment-service
@@ -86,20 +97,30 @@ port: 5000
 GET /discover/<newsid>
 output data example:
 {
-    "newsid": 1,
-    "comments": [
-        {
-            "username": "username1",
-            "comment_info": "test comment info",
-            "timestamp": "2021-10-10 10:10:11"
-        },
-        {
-            "username": "charles57",
-            "comment_info": "im charles57",
-            "timestamp": "2021-10-11 10:11:11"
-        }
-        ...
-    ]
+    'statusCode': 200,
+    'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    },
+    'body': json.dumps({
+        "newsid": 1,
+        "comments": [
+            {
+                "username": "username1",
+                "comment_info": "test comment info",
+                "timestamp": "2021-10-10 10:10:11"
+            },
+            {
+                "username": "charles57",
+                "comment_info": "im charles57",
+                "timestamp": "2021-10-11 10:11:11"
+            }
+            ...
+        ]
+    }),
+    'isBase64Encoded': False
 }
 
 POST /discover/post
@@ -137,25 +158,36 @@ Description: Get a list of corresponding news with specific label via querying n
 
 output data example:
 {
-    "totalResults": 10,
-    "news": [
-        {
-            "news_id": 0,
-            "label": "business",
-            "title": "business news title 0",
-            "url": "www.google.com",
-            "description": "business news description"
-        },
-        {
-            "news_id": 3,
-            "label": "technology",
-            "title": "technology news title 3",
-            "url": "",
-            "description": "technologt news description"
-        },
-        ...
-    ]
+    'statusCode': 200,
+    'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    },
+    'body': json.dumps({
+        "totalResults": 10,
+        "news": [
+            {
+                "news_id": 0,
+                "label": "business",
+                "title": "business news title 0",
+                "url": "www.google.com",
+                "description": "business news description"
+            },
+            {
+                "news_id": 3,
+                "label": "technology",
+                "title": "technology news title 3",
+                "url": "",
+                "description": "technologt news description"
+            },
+            ...
+        ]
+    }),
+    'isBase64Encoded': False
 }
+
 ```
 
 
@@ -165,13 +197,25 @@ GET /news?newsid=1
 Description: Get detailed news information with specific label 
 
 output data example:
+
 {
-    "newsid": 1,
-    "label": "technology",
-    "title": "technology news title 3",
-    "url": "",
-    "description": "technology news description"
+    'statusCode': 200,
+    'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    },
+    'body': json.dumps({
+        "newsid": 1,
+        "label": "technology",
+        "title": "technology news title 3",
+        "url": "",
+        "description": "technology news description"
+    }),
+    'isBase64Encoded': False
 }
+
 ```
 
 # user-labels-service
