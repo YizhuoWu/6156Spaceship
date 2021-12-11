@@ -59,7 +59,18 @@ def get_comment(username, news_id):
         dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info'], 'timestamp': str(comment_res[i]['timestamp'])}
         return_res['comments'].append(dict)
 
-    rsp = Response(json.dumps(return_res), status=200, content_type="application/json")
+    res = {'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+                },
+                'body': json.dumps(return_res),
+                'isBase64Encoded': False         
+    }
+
+    rsp = Response(json.dumps(res), status=200, content_type="application/json")
     return rsp
 
 @app.route('/discover/post',methods = ['POST'])
@@ -104,7 +115,7 @@ def create_comment():
     for i in range(len(comment_res)):
         dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info'], 'timestamp': str(comment_res[i]['timestamp'])}
         return_res['comments'].append(dict)
-    print(return_res)
+
     rsp = Response(json.dumps(return_res), status=201, content_type="application/json")
     return rsp
 
