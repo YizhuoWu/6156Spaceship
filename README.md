@@ -97,30 +97,20 @@ port: 5000
 GET /discover/<newsid>
 output data example:
 {
-    'statusCode': 200,
-    'headers': {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-    },
-    'body': json.dumps({
-        "newsid": 1,
-        "comments": [
-            {
-                "username": "username1",
-                "comment_info": "test comment info",
-                "timestamp": "2021-10-10 10:10:11"
-            },
-            {
-                "username": "charles57",
-                "comment_info": "im charles57",
-                "timestamp": "2021-10-11 10:11:11"
-            }
-            ...
-        ]
-    }),
-    'isBase64Encoded': False
+    "newsid": 1,
+    "comments": [
+        {
+            "username": "username1",
+            "comment_info": "test comment info",
+            "timestamp": "2021-10-10 10:10:11"
+        },
+        {
+            "username": "charles57",
+            "comment_info": "im charles57",
+            "timestamp": "2021-10-11 10:11:11"
+        }
+        ...
+    ]
 }
 
 POST /discover/post
