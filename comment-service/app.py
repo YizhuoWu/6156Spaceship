@@ -59,18 +59,12 @@ def get_comment(username, news_id):
         dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info'], 'timestamp': str(comment_res[i]['timestamp'])}
         return_res['comments'].append(dict)
 
-    res = {'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-                },
-                'body': json.dumps(return_res),
-                'isBase64Encoded': False         
-    }
+    header = {'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'}
 
-    rsp = Response(json.dumps(res), status=200, content_type="application/json")
+    rsp = Response(json.dumps(return_res), status=200, content_type="application/json", headers=header)
     return rsp
 
 @app.route('/discover/post',methods = ['POST'])
@@ -116,7 +110,12 @@ def create_comment():
         dict = {'username': comment_res[i]['username'], 'comment_info': comment_res[i]['comment_info'], 'timestamp': str(comment_res[i]['timestamp'])}
         return_res['comments'].append(dict)
 
-    rsp = Response(json.dumps(return_res), status=201, content_type="application/json")
+    header = {'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'}
+
+    rsp = Response(json.dumps(return_res), status=201, content_type="application/json", headers=header)
     return rsp
 
 @app.route('/discover/delete',methods = ['DELETE'])
@@ -128,7 +127,13 @@ def delete_comment():
     res = RDBService.delete("Comments", "comment", comment_data)
     if res == "connection failed":
         return Response(json.dumps("Database connection failed"), status=500, content_type="application/json")
-    rsp = Response(json.dumps("delete successfully"), status=204, content_type="application/json")
+
+    header = {'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'}
+
+    rsp = Response(json.dumps("delete successfully"), status=204, content_type="application/json", headers=header)
     return rsp
 
 def check_valid(data):
