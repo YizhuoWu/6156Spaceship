@@ -2,20 +2,24 @@ from flask import Flask, Response, request, jsonify
 from flask_cors import CORS
 from RDB_Application.RDBService import RDBService as RDBService
 import json
-import logging
+import random
+#import logging
 
-app = Flask(__name__)
-CORS(app)
+application = Flask(__name__)
+CORS(application)
 
 
-@app.route("/")
+@application.route("/")
 def index():
     return "The Flask App Works!"
+
+
+
 
 '''
 Get a list of corresponding news with specific label via querying news RDS
 '''
-@app.route('/news',methods = ['GET'])
+@application.route('/news',methods = ['GET'])
 def get_news():
     total_result = 10 # -->TBD
     labels = request.args.get('labels')
@@ -28,18 +32,30 @@ def get_news():
     for i in range(len(l)):
         cur_news_connection = RDBService.get_db_connection("news")
         label = l[i]
-        print(1)
+        #print(1)
         with cur_news_connection:
             with cur_news_connection.cursor() as cursor:
-                print(2)
+                #print(2)
                 query_sql = "select * from `db-news-schema`.`news_table` where `category` = " + "'"+label+"'"
-                query_sql += " LIMIT "
-                query_sql += str(news_per_cate)
-                print(query_sql)
+                #query_sql += " LIMIT "
+                #query_sql += str(news_per_cate)
+                #print(query_sql)
 
                 res_news = cursor.execute(query_sql)
                 res_news = cursor.fetchall()
-                result += res_news
+
+                #generate random index of news of current_labels
+                random_result_index = []
+                random_result = []
+                total_result = len(res_news)
+                cnt = 0
+                while cnt < news_per_cate:
+                    random_index = random.randint(0, total_result)
+                    if random_index not in random_result_index:
+                        random_result_index.append(random_index)
+                        cnt += 1
+                random_result = [res_news[i] for i in random_result_index]
+                result += random_result
 
     #make result to return
     json_result = {"totalResults": len(result),
@@ -52,7 +68,7 @@ def get_news():
 Given an specific news id, return the news with detailed information.
 Used for extract labels from news.
 '''
-@app.route('/news/<news_id>',methods = ['GET'])
+@application.route('/news/<news_id>',methods = ['GET'])
 def get_label(news_id):
     cur_news_connection = RDBService.get_db_connection("news")
 
@@ -72,7 +88,10 @@ def get_label(news_id):
 
             rsp = Response(json.dumps(result_dict), status=200, content_type="application/json")
             return rsp
+
+
+
 if __name__ == '__main__':
     #app.run(host="0.0.0.0", port=5000)
-    app.run()
+    application.run()
 

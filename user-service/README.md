@@ -38,9 +38,9 @@ Then it should return something like this:
 # return the profile of user with specified username
 /users/<string:username> GET
 
-# set the profile of user with specified email
+# set the profile of user with specified username
 # valid attributes: state, city, address, username, email
-/users/<string:email> POST
+/users/<string:username> POST
 
 # delete the profile of user with specified email
 /users/<string:email> DELETE
@@ -70,21 +70,27 @@ GET http://127.0.0.1:5000/api/v1/users/danielleboyd
 }
 STATUS = 200
 
-PUT http://127.0.0.1:5000/api/v1/users/Christina.Stokes@columbia.edu?city=nyc
-{
-    "address": "41506 Eric Port\nLoweland, DE 40062",
-    "city": "nyc",
-    "email": "Christina.Stokes@columbia.edu",
+POST http://127.0.0.1:5000/api/v1/users/virginia14?update
+body: {
+    "street": "West 100 Street",
+    "street2": "792 columbus avenue",
+    "city": "new york city",
+    "state": "NY",
+    "zipcode": ""
+}
+response: {
+    "address": "627 Hammond Extensions Apt. 851\nCookhaven, WV 81869",
+    "city": "new york city",
+    "email": "Anthony.Arnold@columbia.edu",
     "links": [
         {
             "rel": "self",
-            "url": "/api/v1/users/danielleboyd"
+            "url": "/api/v1/users/virginia14"
         }
     ],
-    "state": "New Mexico",
-    "username": "danielleboyd"
+    "state": "NY",
+    "username": "virginia14"
 }
-STATUS = 201
 
 GET http://127.0.0.1:5000/api/v1/users?state=Florida
 [

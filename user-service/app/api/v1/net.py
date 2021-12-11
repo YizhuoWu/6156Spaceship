@@ -7,4 +7,8 @@ async def validate_address(street, stree2, city, state, zipcode=""):
         async with session.get(
                 'http://addrvalidationservice-env.eba-jtfahpj7.us-east-1.elasticbeanstalk.com/validate?',
                 json=body) as response:
-            return await response.text()
+            text = await response.text()
+            if text.__contains__('valid'):
+                return True
+            else:
+                return False

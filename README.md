@@ -145,15 +145,11 @@ input data example:
 # news-service
 
 ### deployed link
-
+http://newsservice-env.eba-2pjdsqjc.us-east-1.elasticbeanstalk.com/
 
 ### endpoints
 ```
-GET /news
-body: {
-    labels: ["business", "technology"]
-}
-
+GET /news?labels="['business','sports']"
 Description: Get a list of corresponding news with specific label via querying news RDS
 
 output data example:
@@ -192,7 +188,7 @@ output data example:
 
 
 ```
-GET /news?newsid=1
+GET /news/newsid
 
 Description: Get detailed news information with specific label 
 
@@ -298,6 +294,29 @@ increment num_likes value by 1
 (2).Update "users" table
 When user likes a news, add current news label to labels,
 ex: (charles57's initial labels is {"business":2}, after he likes a news with "technology" label, update charles57's label to {"business":2, "technology:1"})
+```
+
+## Step Function:
+### To Execute StateMachine:
+```
+POST /news-meta/start
+with the following request body:
+{
+   "input": "{\"queryStringParameters\": {\"newsid\": \"<news-id>\"}}",
+   "name": "<execution-name>",
+   "stateMachineArn": "<state-machine-arn>"
+}
+```
+    
+### To Get Execution Status (Result):
+```
+POST /news-meta/describe
+with the following request body:
+{
+   "executionArn": "<execution-arn>"
+}
+where 
+<execution-arn> = <state-machine-arn-replace-”stateMachine”-with-”execution”>:<execution-name>
 ```
 
 

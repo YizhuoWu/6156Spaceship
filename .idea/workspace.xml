@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="">
+    <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="Add comments microservice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-service/RDB_Application/RDBService.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/RDB_Application/RDBService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-service/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-service/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-population/populate_dynamodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-population/populate_dynamodb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -112,8 +119,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/news-service" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -132,6 +141,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.application">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="6156Spaceship" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -235,6 +249,7 @@
       <workItem from="1634233327150" duration="1049000" />
       <workItem from="1638733637402" duration="562000" />
       <workItem from="1638739989850" duration="1001000" />
+      <workItem from="1639077118994" duration="4495000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments microservice">
       <created>1634101843864</created>
@@ -305,6 +320,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add comments microservice" />
     <option name="LAST_COMMIT_MESSAGE" value="Add comments microservice" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/news-service/app.py" />
