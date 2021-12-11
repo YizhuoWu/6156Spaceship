@@ -54,7 +54,7 @@ def fetch_from_news_api():
 
 			title = article["title"]
 			description = article["description"]
-			url = article["url"]
+			url = article["urlToImage"]
 
 			print("news_id: ", news_id)
 			print("url: ",url)

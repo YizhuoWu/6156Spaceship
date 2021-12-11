@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="Add comments microservice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-population/populate_dynamodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-population/populate_dynamodb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +37,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/news-population/populate_dynamodb.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/news-service/application.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/news-population/populate_dynamodb.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/comment-service/app.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectFrameBounds">
@@ -249,7 +249,7 @@
       <workItem from="1634233327150" duration="1049000" />
       <workItem from="1638733637402" duration="562000" />
       <workItem from="1638739989850" duration="1001000" />
-      <workItem from="1639077118994" duration="4060000" />
+      <workItem from="1639077118994" duration="4495000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments microservice">
       <created>1634101843864</created>
