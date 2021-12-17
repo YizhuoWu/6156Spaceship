@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7345ee8e-8c2b-4d2e-bef6-7816233c7f4c" name="Changes" comment="Add comments microservice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-population/populate_dynamodb.py" beforeDir="false" afterPath="$PROJECT_DIR$/news-population/populate_dynamodb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/news-service/application.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/news-population/populate_dynamodb.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/comment-service/app.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectFrameBounds">
@@ -140,7 +138,7 @@
       <recent name="$PROJECT_DIR$/news-service" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.application">
+  <component name="RunManager">
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -224,12 +222,6 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.application" />
-        <item itemvalue="Python.app" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -250,6 +242,7 @@
       <workItem from="1638733637402" duration="562000" />
       <workItem from="1638739989850" duration="1001000" />
       <workItem from="1639077118994" duration="4495000" />
+      <workItem from="1639255263878" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="Add comments microservice">
       <created>1634101843864</created>
